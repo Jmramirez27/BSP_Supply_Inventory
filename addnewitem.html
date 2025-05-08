@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div id="alert-box"></div>
+    </div>
+    
+    <form action="addnewitem.php" method="POST">
+        <div class="mb-3">
+            <label for="InputItemNum" class="form-label">Item Number</label>
+            <input type="number" class="form-control" id="InputItemNum" name="item_num" required>
+            <div id="ItemNum" class="form-text">Insert the Item Number.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="InputItemParticular" class="form-label">Particular</label>
+            <input type="text" class="form-control" id="InputItemParticular" name="Particular" required>
+            <div id="Parti" class="form-text">Insert the Item Particular</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="InputQuantity" class="form-label">Insert Item Quantity</label>
+            <input type="number" class="form-control" id="InputQuantity" name="Quantity" required>
+            <div id="QTY" class="form-text">Insert Item Quantity.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="InputUnit" class="form-label">Item Unit</label>
+            <input type="text" class="form-control" id="InputUnit" name="Unit" required>
+            <div id="ItemUnit" class="form-text">Item Unit.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="InputDate" class="form-label">Date</label>
+            <input type="date" class="form-control" id="InputDate" name="Date" required>
+            <div id="Date" class="form-text">Date</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="DivSecSelect" class="form-label">Division Requested</label>
+            <select id="DivSecSelect" class="form-select" name="Div_request" required>
+                <option value="">-- Select Division --</option>
+                <option value="Field Operation Division">Field Operation Division</option>
+                <option value="Admin Division">Admin Division</option>
+                <option value="Finance Division">Finance Division</option>
+                <option value="Office of the Secretary General">Office of the Secretary General</option>
+                <option value="National Scout Shop">National Scout Shop</option>
+                <option value="Property Management Development Division">Property Management Development Division</option>
+                <option value="Internal Audit">Internal Audit</option>
+                <option value="Central Record Office">Central Record Office</option>
+                <option value="Planning and ICT Unit">Planning and ICT Unit</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="InputTotalNum" class="form-label">Total Item Requested</label>
+            <input type="number" class="form-control" id="InputTotalNum" name="Total_Item_Requested" required>
+            <div id="ItemTotalNum" class="form-text">Insert the Total Item Requested.</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-success" onclick="location.href='inventory.php'">Back </button>
+    </form>
+    */script that will activate message of either an error or success*/
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const status = params.get("status");
+        const message = params.get("message");
+    
+        if (status === "success") {
+            document.getElementById("alert-box").innerHTML = `
+                <div class="alert alert-success text-center">Item successfully added!</div>
+            `;
+        } else if (status === "error") {
+            document.getElementById("alert-box").innerHTML = `
+                <div class="alert alert-danger text-center">${decodeURIComponent(message)}</div>
+            `;
+        }
+    </script>
+    
+</body>
+</html>
